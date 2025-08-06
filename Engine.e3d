@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DebuggerProperties SYSTEM "DebuggerProperties-3.8.dtd">
+<!-- eric3 debugger properties file for project Engine -->
+<!-- This file was generated automatically, do not edit. -->
+<!-- Saved: 2006-01-16, 19:00:19 -->
+<DebuggerProperties version="3.8">
+  <Interpreter></Interpreter>
+  <DebugClient></DebugClient>
+  <Environment override="0"></Environment>
+  <RemoteDebugger on="0">
+    <RemoteHost></RemoteHost>
+    <RemoteCommand></RemoteCommand>
+  </RemoteDebugger>
+  <PathTranslation on="0">
+    <RemotePath></RemotePath>
+    <LocalPath></LocalPath>
+  </PathTranslation>
+  <ConsoleDebugger on="0"></ConsoleDebugger>
+  <Redirect on="1" />
+</DebuggerProperties>

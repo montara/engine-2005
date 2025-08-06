@@ -1,0 +1,158 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>EngineUI</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>EngineUI</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>317</width>
+            <height>276</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Engine Parameters</string>
+    </property>
+    <widget class="QSlider">
+        <property name="name">
+            <cstring>VelocitySlider</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>10</y>
+                <width>290</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="maxValue">
+            <number>20000</number>
+        </property>
+        <property name="lineStep">
+            <number>1</number>
+        </property>
+        <property name="pageStep">
+            <number>1000</number>
+        </property>
+        <property name="orientation">
+            <enum>Horizontal</enum>
+        </property>
+        <property name="tickmarks">
+            <enum>Above</enum>
+        </property>
+        <property name="tickInterval">
+            <number>1000</number>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>VelocityLabel</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>120</x>
+                <y>30</y>
+                <width>71</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Velocity</string>
+        </property>
+    </widget>
+    <widget class="QSlider">
+        <property name="name">
+            <cstring>TorqueSlider</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>60</y>
+                <width>290</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="maxValue">
+            <number>20000</number>
+        </property>
+        <property name="pageStep">
+            <number>100</number>
+        </property>
+        <property name="orientation">
+            <enum>Horizontal</enum>
+        </property>
+        <property name="tickmarks">
+            <enum>Above</enum>
+        </property>
+        <property name="tickInterval">
+            <number>1000</number>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>TorqueLabel</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>120</x>
+                <y>80</y>
+                <width>72</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Torque</string>
+        </property>
+    </widget>
+    <widget class="QDial">
+        <property name="name">
+            <cstring>RPMDial</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>80</x>
+                <y>110</y>
+                <width>140</width>
+                <height>140</height>
+            </rect>
+        </property>
+        <property name="notchesVisible">
+            <bool>true</bool>
+        </property>
+        <property name="minValue">
+            <number>0</number>
+        </property>
+        <property name="maxValue">
+            <number>8000</number>
+        </property>
+        <property name="lineStep">
+            <number>200</number>
+        </property>
+        <property name="pageStep">
+            <number>500</number>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>RPMLabel</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>130</x>
+                <y>250</y>
+                <width>34</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>RPM</string>
+        </property>
+        <property name="alignment">
+            <set>AlignVCenter</set>
+        </property>
+    </widget>
+</widget>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

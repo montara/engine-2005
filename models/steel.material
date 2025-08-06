@@ -1,0 +1,36 @@
+material steel 
+{
+    technique
+    {
+        pass
+        {
+            ambient 1.0 1.0 1.0
+            diffuse 1.0 1.0 1.0
+            specular 1.0 1.0 1.0 9800.0
+            emissive 0.0 0.0 0.0 1
+            texture_unit
+            {
+                texture Reflectx.jpg
+                env_map spherical
+            }
+        }
+    }
+}
+
+material Alum/SOLID/TEX/Alumox.jpg 
+{
+    technique
+    {
+        pass
+        {
+            ambient 1.0 1.0 1.0
+            diffuse 1.0 1.0 1.0
+            specular 1.0 1.0 1.0 9800.0
+            emissive 0.0 0.0 0.0 1
+            texture_unit
+            {
+                texture Alumox.jpg
+            }
+        }
+    }
+}

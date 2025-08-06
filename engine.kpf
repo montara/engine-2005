@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Komodo Project File - DO NOT EDIT -->
+<project id="1086EC531DCL1e1dd04d0x5eb5" name="engine" kpf_version="2">
+<preference-set id="">
+  <string id="import_dirname">/home/ttedford/python/engine</string>
+</preference-set>
+<file url="testing.py" id="1086EE3B5CAL7fc813ac0x602d" name="testing.py">
+</file>
+<file url="EngineSim.wpr" id="1086EE3B5CAL70e7bd1a0x602d" name="EngineSim.wpr">
+</file>
+<file url="engine.kdevelop" id="1086EE3B5CAL15f3c8840x602d" name="engine.kdevelop">
+</file>
+<file url="testing-spheres-boxes.py" id="1086EE3B5CAL50b649130x602d" name="testing-spheres-boxes.py">
+</file>
+<ProjectRef url="engine.kpf" id="1086EE3B5CAL475b0de80x602d" name="engine.kpf">
+</ProjectRef>
+<file url="engine.py" id="1086EE3B5CAL4c838d630x602d" name="engine.py">
+<preference-set id="">
+  <string id="lastInvocation">default</string>
+<preference-set id="Invocations">
+<preference-set id="default">
+  <string id="postparams"></string>
+  <string id="getparams"></string>
+  <boolean id="use-console">0</boolean>
+  <string id="filename">/home/ttedford/python/engine/engine.py</string>
+  <string id="executable-params"></string>
+  <boolean id="show-dialog">1</boolean>
+  <string id="request-method">GET</string>
+  <string id="params"></string>
+  <string id="mpostparams"></string>
+  <string id="posttype">application/x-www-form-urlencoded</string>
+  <string id="documentRoot"></string>
+  <string id="cookieparams"></string>
+  <string id="userEnvironment"></string>
+  <boolean id="sim-cgi">0</boolean>
+  <string id="cwd"></string>
+  <string id="userCGIEnvironment"></string>
+</preference-set>
+</preference-set>
+</preference-set>
+</file>
+<file url="bkg.bmp" id="1086EE3B5CAL2d5361260x602d" name="bkg.bmp">
+</file>
+<file url="bkg.jpg" id="1086EE3B5CAL2848304c0x602d" name="bkg.jpg">
+</file>
+<file url="engine.kdevses" id="1086EE3B5CAL460aa9660x602d" name="engine.kdevses">
+</file>
+<folder url="components" id="1086EE3B5CEL4e97c5390x602d" name="components">
+<preference-set id="">
+</preference-set>
+<file url="components/piston.py" id="1086EE3B5CAL405010020x602d" name="piston.py">
+</file>
+<file url="components/connecting_rod.py" id="1086EE3B5CAL6f35d4840x602d" name="connecting_rod.py">
+</file>
+<file url="components/camshaft.py" id="1086EE3B5CAL7b3a570e0x602d" name="camshaft.py">
+</file>
+<file url="components/block.py" id="1086EE3B5CAL310134c80x602d" name="block.py">
+<preference-set id="">
+  <string id="lastInvocation">default</string>
+<preference-set id="Invocations">
+<preference-set id="default">
+  <string id="postparams"></string>
+  <string id="userEnvironment"></string>
+  <string id="getparams"></string>
+  <boolean id="use-console">0</boolean>
+  <string id="executable-params"></string>
+  <boolean id="show-dialog">1</boolean>
+  <string id="request-method">GET</string>
+  <string id="params"></string>
+  <string id="mpostparams"></string>
+  <string id="posttype">application/x-www-form-urlencoded</string>
+  <string id="documentRoot"></string>
+  <string id="cookieparams"></string>
+  <string id="filename">/home/ttedford/python/engine/components/block.py</string>
+  <boolean id="sim-cgi">0</boolean>
+  <string id="cwd"></string>
+  <string id="userCGIEnvironment"></string>
+</preference-set>
+</preference-set>
+</preference-set>
+</file>
+<file url="components/crankshaft.py" id="1086EE3B5CAL4648f34f0x602d" name="crankshaft.py">
+</file>
+<file url="components/cylinder_head.py" id="1086EE3B5CAL3e95019c0x602d" name="cylinder_head.py">
+</file>
+<file url="components/carburetor.py" id="1086EE3B5CBL481daa060x602d" name="carburetor.py">
+</file>
+</folder>
+<folder id="108B1B0DE2BL58fd8d730x3357" name="models">
+</folder>
+<file url="OgreFramework.py" id="108B1ECDEB4L79692d200x3357" name="OgreFramework.py">
+<preference-set id="">
+  <string id="lastInvocation">default</string>
+<preference-set id="Invocations">
+<preference-set id="default">
+  <string id="postparams"></string>
+  <string id="userEnvironment"></string>
+  <string id="getparams"></string>
+  <boolean id="use-console">0</boolean>
+  <string id="executable-params"></string>
+  <boolean id="show-dialog">1</boolean>
+  <string id="request-method">GET</string>
+  <string id="params"></string>
+  <string id="mpostparams"></string>
+  <string id="posttype">application/x-www-form-urlencoded</string>
+  <string id="documentRoot"></string>
+  <string id="cookieparams"></string>
+  <string id="filename">/home/ttedford/python/engine/OgreFramework.py</string>
+  <boolean id="sim-cgi">0</boolean>
+  <string id="cwd"></string>
+  <string id="userCGIEnvironment"></string>
+</preference-set>
+</preference-set>
+</preference-set>
+</file>
+</project>

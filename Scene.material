@@ -1,0 +1,14 @@
+material MediumGrey
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.544366 0.522963 0.577292 1.000000
+			specular 0.369170 0.384398 0.430419 1.000000 12.500000
+			emissive 0.000000 0.000000 0.000000 1.000000
+		}
+	}
+}

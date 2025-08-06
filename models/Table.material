@@ -1,0 +1,101 @@
+material HalveRed/SOLID/TEX/green_lamp.jpg
+{
+	technique
+	{
+		pass
+		{
+			diffuse 0.700196 0.045709 0.030651
+			specular 0.500000 0.500000 0.500000 12.500000
+			texture_unit
+			{
+				texture green_lamp.jpg
+			}
+		}
+	}
+}
+material Red/SOLID
+{
+	technique
+	{
+		pass
+		{
+			diffuse 0.919741 0.128912 0.128912
+			specular 0.500000 0.500000 0.500000 12.500000
+		}
+	}
+}
+material Red/SOLID/TEX/chrome_map.jpg
+{
+	technique
+	{
+		pass
+		{
+			diffuse 0.919741 0.128912 0.128912
+			specular 0.500000 0.500000 0.500000 12.500000
+			texture_unit
+			{
+				texture chrome_map.jpg
+			}
+		}
+	}
+}
+material Red/SOLID/TEX/red_lamp.jpg
+{
+	technique
+	{
+		pass
+		{
+			diffuse 0.919741 0.128912 0.128912
+			specular 0.500000 0.500000 0.500000 12.500000
+			texture_unit
+			{
+				texture red_lamp.jpg
+			}
+		}
+	}
+}
+material Red/SOLID/TEX/toolbox_red.jpg
+{
+	technique
+	{
+		pass
+		{
+			diffuse 0.919741 0.128912 0.128912
+			specular 0.500000 0.500000 0.500000 12.500000
+			texture_unit
+			{
+				texture toolbox_red.jpg
+			}
+		}
+	}
+}
+material Chrome/SOLID/TEX/chrome_map.jpg
+{
+	technique
+	{
+		pass
+		{
+			diffuse 0.850000 0.850000 0.850000
+			specular 0.500000 0.500000 0.500000 12.500000
+			texture_unit
+			{
+				texture chrome_map.jpg
+			}
+		}
+	}
+}
+material DarkGrey/SOLID/TEX/dark_grey.jpg
+{
+	technique
+	{
+		pass
+		{
+			diffuse 0.357491 0.331505 0.331505
+			specular 0.500000 0.500000 0.500000 12.500000
+			texture_unit
+			{
+				texture dark_grey.jpg
+			}
+		}
+	}
+}

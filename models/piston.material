@@ -1,0 +1,42 @@
+material Aluminum/SOLID/TEX/brushed_aluminium2.jpg
+{
+	technique
+	{
+		pass
+		{
+			specular 0.585494 0.585494 0.585494 18.000000
+			texture_unit
+			{
+				texture brushed_aluminium2.jpg
+			}
+		}
+	}
+}
+material Black/SOLID/TEX/flatblack.jpg
+{
+	technique
+	{
+		pass
+		{
+			specular 0.500000 0.500000 0.500000 12.500000
+			texture_unit
+			{
+				texture flatblack.jpg
+			}
+		}
+	}
+}
+material CompRing/SOLID/TEX/Reflectx.jpg
+{
+	technique
+	{
+		pass
+		{
+			specular 0.500000 0.500000 0.500000 12.500000
+			texture_unit
+			{
+				texture Reflectx.jpg
+			}
+		}
+	}
+}

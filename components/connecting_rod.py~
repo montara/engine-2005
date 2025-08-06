@@ -1,0 +1,132 @@
+import sys
+import ode
+from utility import *
+from piston import *
+
+class connectingRod:
+	"""
+	"""
+	def __init__(self):
+		self.length = 4.6
+		self.width = 0.5
+		self.density = 10.0
+		self.jointGroup = ode.JointGroup()
+		
+		
+	def createBodies(self, block, crank, world, space, x, y, z, density):
+		# list of ODE bodies
+		bodies = []
+		# Number of cylinders
+		numCyl = block.numCylinders
+		# Number of cylinder banks
+		numBanks = block.numCylBanks
+		# Crank rod journal diameter
+		journalDiameter = crank.RodJournalDiameter
+		# Crank rod journal width
+		journalWidth = crank.RodJournalWidth
+		# Crank stroke
+		stroke = crank.stroke
+		# The number of rods sharing each crank rod journal
+		rodsPerJournal = numCyl/crank.numRodJournals
+		# a list where cyl-1 indexes can be used to
+		# look up where it is on the journal
+		rodJournalOrder = []
+		
+		i = 0
+		j = 0 
+		while i < crank.numRodJournals:
+			while j < rodsPerJournal:
+				rodJournalOrder.append(j)
+				j += 1
+			j = 0
+			i += 1
+		
+		i = 0
+		while i < numCyl:
+			# Which bank am I in, and in what order from the front
+			(myBank, myBankSeq) = block.cylBankOrder[i]
+			myRodJournalSequence = block.cylinderBanks[i]
+			# Where the cylinder bank center is
+			(bx,by,bz) = block.bankCoordinates[i]
+			# get this cylinder's crank rod journal position
+			(jx,jy,jz) = crank.RodJournalPositions[myBankSeq]
+			jz = jz - (journalWidth/2)
+			
+			# piston object
+			myPiston = piston()
+			
+			if rodJournalOrder[i] == 0:
+				journalOffset = ((journalWidth/rodsPerJournal)*(rodJournalOrder[i])) +(self.width)
+			else:
+				journalOffset = ((journalWidth/rodsPerJournal)*(rodJournalOrder[i])) +(self.width/2)
+				
+			# The rod center of mass
+			myZ = jz + journalOffset
+			myX = jx 
+			myY = jy + (self.length/2)+(journalDiameter/2)
+			
+			# The angle to the cylinder to the rod journal
+			myBankAngle = radToPoint(bx,by,jx,jy) #toRadians(block.cylinderBankAngles[myBank])
+			
+			# The rod top end position
+			topPosition = rotArbPoint(myX, myY+(self.length/2), myZ, jx,jy,jz, myBankAngle, 3)
+			
+			# The cylinder bank angle, from 0,0
+			BankAngle = radians(block.cylinderBankAngles[myBank])
+			
+			# Rod journal angle, from 0,0.. already in radians
+			journalAngle = crank.angles[myBankSeq]
+			
+			pistonPosition = circleLineIntersect((bx,by), (x,y), (jx,jy), self.length+(journalDiameter/2)+myPiston.rodHeight)
+			pistonAngle = radToPoint(pistonPosition[0],pistonPosition[1],jx, jy)
+			
+			# Rod position
+			position = rotArbPoint(myX, myY, myZ, jx,jy,myZ, 0-pistonAngle, 3)
+			
+			# Rod rotation
+			rotation = rot(3,pistonAngle)
+			
+			# ODE Rod body
+			rodBody = create_cylinder(world,
+				space,
+				self.density,
+				(self.width/2),
+				self.length,
+				rotation,
+				position)
+			
+
+			
+			# Make the joint that connects the bottom to the journal
+			BottomJoint = ode.HingeJoint(world,self.jointGroup)
+			rodJoint = crank.RodJoints[myBankSeq]
+			rodJournalBody = rodJoint.getBody(0)
+			BottomJoint.attach(rodBody, rodJournalBody)
+			BottomJoint.setAnchor(rodJournalBody.getPosition())
+			BottomJoint.setAxis((0,0,1))
+			BottomJoint.setParam(ode.paramFMax,0)
+			
+			# Make a piston
+			
+
+			
+			# Insert custom specs here
+			
+			# ODE Piston body creation
+			body = myPiston.createBody(world,space,block,crank,self,pistonPosition[0],pistonPosition[1],myZ, BankAngle, rodBody)
+			
+			# Append it to the global body list
+			bodies.append(rodBody)
+			
+			# Append it to the global body list
+			bodies.append(body)
+			
+			# increment the cylinder counter
+			i += 1
+			
+			
+		# return our list of bodies
+		return bodies
+			
+
+	

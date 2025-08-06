@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Project SYSTEM "Project-3.8.dtd">
+<!-- Project file for project Engine -->
+<!-- Saved: 2006-01-16, 19:05:24 -->
+<!-- Copyright (C) 2006 Tim Tedford, montara@gmail.com -->
+<Project version="3.8">
+  <ProgLanguage mixed="0">Python</ProgLanguage>
+  <UIType>Qt</UIType>
+  <Description>Internal Combustion Engine on demand.</Description>
+  <Version>0.1</Version>
+  <Author>Tim Tedford</Author>
+  <Email>montara@gmail.com</Email>
+  <Sources>
+    <Source>
+      <Name>engine.py</Name>
+    </Source>
+    <Source>
+      <Dir>ui</Dir>
+      <Name>engineUI.py</Name>
+    </Source>
+    <Source>
+      <Name>testing.py</Name>
+    </Source>
+    <Source>
+      <Name>main.py</Name>
+    </Source>
+    <Source>
+      <Dir>components</Dir>
+      <Name>piston.py</Name>
+    </Source>
+    <Source>
+      <Dir>components</Dir>
+      <Name>connecting_rod.py</Name>
+    </Source>
+    <Source>
+      <Dir>components</Dir>
+      <Name>camshaft.py</Name>
+    </Source>
+    <Source>
+      <Dir>components</Dir>
+      <Name>block.py</Name>
+    </Source>
+    <Source>
+      <Dir>components</Dir>
+      <Name>utility.py</Name>
+    </Source>
+    <Source>
+      <Dir>components</Dir>
+      <Name>crankshaft.py</Name>
+    </Source>
+    <Source>
+      <Dir>components</Dir>
+      <Name>cylinder_head.py</Name>
+    </Source>
+    <Source>
+      <Dir>components</Dir>
+      <Name>carburetor.py</Name>
+    </Source>
+    <Source>
+      <Name>OgreFramework.py</Name>
+    </Source>
+    <Source>
+      <Name>testing-spheres-boxes.py</Name>
+    </Source>
+    <Source>
+      <Name>EngineDialog_ui.py</Name>
+    </Source>
+    <Source>
+      <Name>EngineDialog.py</Name>
+    </Source>
+  </Sources>
+  <Forms>
+    <Form>
+      <Dir>ui</Dir>
+      <Name>engineUI.ui</Name>
+    </Form>
+  </Forms>
+  <Translations>
+  </Translations>
+  <Interfaces>
+  </Interfaces>
+  <Others>
+  </Others>
+  <MainScript>
+    <Name>engine.py</Name>
+  </MainScript>
+  <Vcs>
+    <VcsType>CVS</VcsType>
+    <VcsOptions>{'status': ['-v'], 'log': [''], 'global': ['-f'], 'update': ['-dP'], 'remove': ['-f'], 'add': [''], 'tag': ['-c'], 'export': [''], 'diff': ['-u3', '-p'], 'commit': [''], 'checkout': [''], 'history': ['-e', '-a']}</VcsOptions>
+    <VcsOtherData>{}</VcsOtherData>
+  </Vcs>
+  <FiletypeAssociations>
+    <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
+    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.py" type="SOURCES" />
+  </FiletypeAssociations>
+</Project>

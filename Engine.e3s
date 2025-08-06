@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Session SYSTEM "Session-3.8.dtd">
+<!-- eric3 session file for project Engine -->
+<!-- This file was generated automatically, do not edit. -->
+<!-- Saved: 2006-01-16, 19:00:19 -->
+<Session version="3.8">
+  <Filenames>
+    <Filename cline="15" cindex="14">/home/ttedford/python/engine/main.py</Filename>
+    <Filename cline="350" cindex="15">/home/ttedford/python/engine/components/utility.py</Filename>
+    <Filename cline="30" cindex="43">/home/ttedford/python/engine/engine.py</Filename>
+  </Filenames>
+  <ActiveWindow cline="30" cindex="43">/home/ttedford/python/engine/engine.py</ActiveWindow>
+  <Breakpoints>
+    <Breakpoint>
+      <BpFilename>/home/ttedford/python/engine/engine.py</BpFilename>
+      <Linenumber value="1" />
+      <Condition>None</Condition>
+      <Temporary value="0" />
+      <Enabled value="1" />
+      <Count value="0" />
+    </Breakpoint>
+  </Breakpoints>
+  <Watchpoints>
+  </Watchpoints>
+  <DebugInfo>
+    <CommandLine></CommandLine>
+    <WorkingDirectory></WorkingDirectory>
+    <Environment></Environment>
+    <ReportExceptions value="1" />
+    <Exceptions>
+    </Exceptions>
+    <TracePython value="0" />
+    <CovexcPattern></CovexcPattern>
+  </DebugInfo>
+  <Bookmarks>
+  </Bookmarks>
+</Session>

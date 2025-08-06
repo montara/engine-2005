@@ -1,0 +1,376 @@
+from math import *
+import ode
+import time
+
+def rot(axis,theta):
+	"""Supply rotation matrix rotated by theta degrees
+	along the given axis
+	
+	axis 1 = x
+	axis 2 = y
+	axis 3 = z
+	"""
+	#theta = theta
+	rot = None
+	ca = cos(theta)
+	sa = sin(theta)
+	if axis == 1: # if X
+		rot = [
+			1.0,0.0,0.0,
+			0.0,ca,sa,
+			0.0,-sa,ca
+			]
+	if axis == 2: # if Y
+		rot = [
+			ca,0.0,-sa,
+			0.0,1.0,0.0,
+			sa,0.0,ca
+			]
+	if axis == 3: # if Z
+		rot = [
+			ca,sa,0.0,
+			-sa,ca,0.0,
+			0.0,0.0,1
+			]
+	return rot
+
+def rotx90():
+	# Set the crank end rotation
+	angle = pi/2 ## (90 degrees)
+	ca = cos(angle)
+	sa = sin(angle)
+
+	rot90x = [
+		1.0,0.0,0.0,
+		0.0,ca,sa,
+		0.0,-sa,ca
+	]
+	return rot90x
+
+# create_box
+def create_box(world, space, density, lx, ly, lz):
+	"""Create a box body and its corresponding geom."""
+
+	# Create body
+	body = ode.Body(world)
+	M = ode.Mass()
+	M.setBox(density, lx, ly, lz)
+	body.setMass(M)
+
+	# Set parameters for drawing the body
+	body.shape = "box"
+	body.boxsize = (lx, ly, lz)
+
+	# Create a box geom for collision detection
+	geom = ode.GeomBox(space, lengths=body.boxsize)
+	geom.setBody(body)
+
+	return body
+
+#create_cylinder
+def create_cylinder(world, space, density, radius, length, rotation, position):
+
+	# Create body
+	body = ode.Body(world)
+	M = ode.Mass()
+	#M.setCappedCylinder(density, 2, radius, length)
+	#M.setCylinder(density, 2, radius, length)
+	M.setSphere(density,radius)
+	body.setMass(M)
+	body.setPosition(position)
+	if rotation:
+		body.setRotation(rotation)
+		
+	# Set parameters for drawing the body
+	body.shape = "cylinder"
+	body.cylDimensions = (2, radius, length)
+	#body.mesh = ''
+
+	# Create a box geom for collision detection
+	#geom = ode.GeomCCylinder(space, radius=radius, length=length/2)
+	geom = ode.GeomCylinder(space, radius=radius, length=length)
+	geom.setBody(body)
+	if rotation:
+		geom.setRotation(rotation)
+
+	return body
+
+# create_sphere
+def create_sphere(world, space, density, radius, position):
+	"""Create a Sphere body and it's corresponding geom."""
+	
+	# Create body
+	body = ode.Body(world)
+	M = ode.Mass()
+	M.setSphere(density, radius)
+	body.setMass(M)
+	body.setPosition(position)
+	
+	# Set parameters for drawing body
+	body.shape = "sphere"
+	body.radius = radius
+	
+	geom = ode.GeomSphere(space, radius)
+	geom.setBody(body)
+	
+	return body
+
+def radToPoint(x,y,refx,refy):
+	"""Return the radians between 2 axis coordinates"""
+	if x == y and y == refx and refx == refy:
+		return None
+	#C = ((sin L1)*(sin L2)) + ((cos L1)*(cos L2)*(cos (N2 - N1)))
+	#c = ((sin(x))*(sin(refx))) + ((cos(x))*(cos(refx))*(cos(refy - y)))
+	#ac = acos(c)
+	nx = x - refx
+	ny = y - refy
+	
+	#angle = atan(slope)
+	#if atan(slope) >= 0:
+	return atan2(nx,ny)
+	#elif atan(slope) < 0:
+	#	return 180-atan(slope)
+	#else:
+	#	return angle
+
+#def radToPoint(x,y,refx,refy):
+#	"""Return the radians between 2 axis coordinates"""
+#	if x == y and y == refx and refx == refy:
+#		return None
+#	x = x-refx
+#	y = y-refy
+#	x = x*x
+#	y = y*y
+#	c = sqrt(x + y)
+#	c = c*c
+#	angle = (x/c) *90
+#	angle = angle*((2*pi)/360)
+#	return toRadians(angle)
+
+def circleLineIntersect(p1, p2, c, radius):
+	""" Returns the point closest to p1 
+	
+	p1 = (point1x, point1y)
+	p2 = (point2x, point2y)
+	c = (centerx, centery)  
+	radius = radius of circle
+	"""
+	(x1, y1) = p1
+	(x2, y2) = p2
+	(cx,cy) = c
+	
+	dx = x2-x1
+	dy = y2-y1
+	
+	a = dx*dx + dy*dy
+	b = 2 * (dx * (x1 - cx) + dy * (y1 - cy))
+	c = (x1 - cx) * (x1 - cx) + (y1 - cy) * (y1 - cy) - (radius*radius)
+	
+	det = b * b - 4 * a * c
+		
+	if (a <= 0.0000001) or (det < 0):
+		return None
+	elif det == 0:
+		t = -b/(2*a)
+		ix1 = x1 + t * dx
+		iy1 = y1 + t * dy
+		return (ix1, iy1)
+	else:
+		t = (-b + sqrt(det)) / (2 * a)
+		ix1 = x1 + t * dx
+		iy1 = y1 + t * dy
+		t = (-b - sqrt(det)) / (2 * a)
+		ix2 = x1 + t * dx
+		iy2 = y1 + t * dy
+		
+		distance1 = distanceTwoPoints(p1,(ix1,iy1))
+		distance2 = distanceTwoPoints(p1,(ix2,iy2))		
+#		if distance1 < distance2:
+#			return (ix1,iy1)
+#		else:
+		return (ix2,iy2)		
+		
+def distanceTwoPoints(p1,p2):
+	(x1,y1) = p1
+	(x2,y2) = p2
+	
+	theta = y1 - y2
+	dist = sin(x1) * sin(x2) + cos(x1) * cos(x2) * cos(theta)
+	ac = acos(dist)
+	return ac
+
+def rotArbPoint(x,y,z, cx, cy,cz, radians, axis):
+	""" Supply coordinates for a point rotated around a center point by
+	the given radians along the given axis.
+	
+	rotArbPoint((point), (center), radians, axis)
+	
+	Axes:
+	1 = X
+	2 = Y
+	3 = Z
+	
+	Returns the translated x, y, and z
+	
+	http://www.kirupa.com/developer/actionscript/trig_multiple_axis.htm
+	"""
+	x = x - cx
+	y = y - cy
+	z = z - cz
+	
+	newX = x
+	newY = y
+	newZ = z
+	
+	if axis == 1:
+		# rotation around x axis (a.k.a. pitch)
+		newY = cos(radians)*y - sin(radians)*z
+		newZ = sin(radians)*y + cos(radians)*z
+
+	if axis == 2:
+		# rotation around y axis (a.k.a. yaw)
+		newZ = cos(radians)*z - sin(radians)*x
+		newX = sin(radians)*z + cos(radians)*x
+
+	if axis == 3:
+		# rotation around z axis (a.k.a. roll)
+		newX = cos(radians)*x - sin(radians)*y
+		newY = sin(radians)*x + cos(radians)*y	
+		
+	newX = newX + cx
+	newY = newY + cy
+	newZ = newZ + cz
+	
+	return (newX,newY,newZ)
+
+#def setRotate(q, center):
+#	""" Supply a quaternion and a center point """
+#	(qw,qx,qy,qz) = q
+	#sqw = qw*qw 
+	#sqx = qx*qx 
+	#sqy = qy*qy
+	#sqz = qz*qz
+	#m00 = sqx - sqy - sqz + sqw
+	#m11 = -sqx + sqy - sqz + sqw
+	#m22 = -sqx - sqy + sqz + sqw
+	
+	#tmp1 = qx*qy
+	#tmp2 = qz*qw
+	
+	#m01 = 2.0 * (tmp1 + tmp2)
+	#m10 = 2.0 * (tmp1 - tmp2)
+	
+	#tmp1 = qx * qz
+	#tmp2 = qy * qw
+	
+	#m02 = 2.0 * (tmp1 + tmp2)
+	#m20 = 2.0 * (tmp1 + tmp2)
+	
+	#tmp1 = qy * qz
+	#tmp2 = qx * qw
+	
+	#m12 = 2.0 * (tmp1 + tmp2)
+	#m21 = 2.0 * (tmp1 - tmp2)
+	
+	#a1 = 0 
+	#a2 = 0
+	#a3 = 0
+	#if center != None:
+		#(a1, a2, a3) = center
+	
+	#m03 = a1 - a1 * m00 - a2 * m01 - a3 * m02
+	#m13 = a2 - a1 * m10 - a2 * m11 - a3 * m12
+	#m23 = a3 - a1 * m20 - a2 * m21 - a3 * m22
+	#m30 = m31 = m32 = 0.0
+	#m33 = 1.0
+
+	#quart = [(m00,m01, m02, m03), 
+				#(m10,m11,m12,m13), 
+				#(m20,m21,m22,m23), 
+				#(m30,m31,m32,m33)]
+
+	#return quart
+
+def rotArbAxis(point, theta, linexyz1, linexyz2):
+	"""Rotate the point, by theta, around a line
+	"""
+	q = [0,0,0]
+	r = [0,0,0]
+	x = 0
+	y = 1
+	z = 2
+	point = list(point)
+	linexyz1 = list(linexyz1)
+	linexyz2 = list(linexyz2)
+	r[x] = linexyz2[x] - linexyz1[x]
+	r[y] = linexyz2[y] - linexyz1[y]
+	r[z] = linexyz2[z] - linexyz1[z]
+	point[x] -= linexyz1[x]
+	point[y] -= linexyz1[y]
+	point[z] -= linexyz1[z]
+	costheta = cos(theta)
+	sintheta = sin(theta)
+	q[x] += (costheta + (1 - costheta) * r[x] * r[x]) * point[x]
+	q[x] += ((1 - costheta) * r[x] * r[y] - r[z] * sintheta) * point[y]
+	q[x] += ((1 - costheta) * r[x] * r[z] + r[y] * sintheta) * point[z]
+	q[y] += ((1 - costheta) * r[x] * r[y] + r[z] * sintheta) * point[x]
+	q[y] += (costheta + (1 - costheta) * r[y] * r[y]) * point[y]
+	q[y] += ((1 - costheta) * r[y] * r[z] - r[x] * sintheta) * point[z]
+	q[z] += ((1 - costheta) * r[x] * r[z] - r[y] * sintheta) * point[x]
+	q[z] += ((1 - costheta) * r[y] * r[z] + r[x] * sintheta) * point[y]
+	q[z] += (costheta + (1 - costheta) * r[z] * r[z]) * point[z]
+	q[x] += linexyz1[x]
+	q[y] += linexyz1[y]
+	q[z] += linexyz1[z]
+
+	return tuple(q)
+
+def rotate3D(vec, axis, amt):
+	"""
+	Rotates a vector about the origin on an arbitrary axis by
+	some amount. Returns the rotated vector.
+	ported from Steve Wismath's aribtrary axis rotation code,
+	as seen in CPSC3710
+	"""
+	sin_t = sin(amt) #*pi/180.0)
+	cos_t = cos(amt) #*pi/180.0)
+
+	uX, uY, uZ = axis
+	vX, vY, vZ = vec
+	return (
+		vX * (uX * uX + cos_t * (1.0 - uX*uX)) +
+		vY * (uY * uX * (1.0 - cos_t) - uZ * sin_t) +
+		vZ * (uZ * uX * (1.0 - cos_t) + uY * sin_t),
+
+		vX * (uX * uY * (1.0 - cos_t) + uZ * sin_t) +
+		vY * (uY * uY + cos_t * (1.0 - uY*uY)) +
+		vZ * (uZ * uY * (1.0 - cos_t) - uX * sin_t),
+
+		vX * (uX * uZ * (1.0 - cos_t) - uY * sin_t) +
+		vY * (uY * uZ * (1.0 - cos_t) + uX * sin_t) +
+		vZ * (uZ * uZ + cos_t * (1.0 - uZ*uZ))
+	)
+
+class toThread:
+  def __init__(self, func, *args):
+    #Thread.__init__(self)
+    name = 'toThread'
+    self._group = None
+    self._done = 0
+    self._stopevent = Event( )
+    self._sleepperiod = 3.0
+    self.func = func
+    self.args = args
+    self.__T = Thread(target=self.run)
+    self.__T.start()
+    
+  def run(self):
+    """ main control loop """
+    print "%s starts" % (self.__T.getName(),)
+    self.func()
+      
+      
+  def stop(self, timeout=None):
+    """ Stop the thread """
+    self._stopevent.set( )
+    Thread.join(self, timeout)
