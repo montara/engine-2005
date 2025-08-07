@@ -6,5 +6,5 @@
 - Created in Python with pyOgre, tcl/tk, and pyODE (Open Dynamics Engine)
   
 
-This is an archived project from the 2004-2006 timeframe. I created this to better understand object oriented programming, 3d modeling and rendering, and physics simulation."
+This is an archived project from the 2004-2006 timeframe. I created this to better understand object oriented programming, 3d modeling and rendering, and physics simulation.
 
