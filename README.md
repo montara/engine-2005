@@ -6,5 +6,7 @@
 - Created in Python with pyOgre, tcl/tk, and pyODE (Open Dynamics Engine)
   
 
+![Engine-2005 Screenshot](snapshot2.jpg "The sim looks like this:")
+
 This is an archived project from the 2004-2006 timeframe. I created this to better understand object oriented programming, 3d modeling and rendering, and physics simulation.
 
